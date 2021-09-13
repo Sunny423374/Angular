@@ -1,0 +1,22 @@
+<p>editproduct works!</p>
+
+<form [formGroup]="prodForm" (ngSubmit)="editData()">
+    <table>
+        <tr>
+            <td><label for="prodid">Product Id</label></td>
+            <td><input type="text" name="prodid" formControlName="prodid"></td>
+        </tr>
+        <tr>
+            <td><label for="prodname">Product Name</label></td>
+            <td><input type="text" name="prodname" formControlName="prodname"> </td>
+        </tr>
+        <tr>
+            <td><label for="price">Product Price</label></td>
+            <td><input type="text" name="price" formControlName="price"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit" [disabled]="!prodForm.valid"> Update Products</button></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,24 @@
+<p>viewproduct works!</p>
+<span> Product List
+    <table id="a">
+        <tr>
+            <td>Product Id</td>
+            <td>Product Name</td>
+            <td>Product Price</td>
+            <td>Product Category</td>
+            <td>Index</td>
+            <td>Delete Product</td>
+            <td>Update Product</td>
+        </tr>
+        <tr *ngFor="let p of prodData; let i=index ">
+            <td>{{p.prodid}}</td>
+            <td>{{p.prodname}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.category}}</td>
+            <td>{{i}}</td>
+            <td><button (click)="deleteData(i)">Delete</button></td>
+            <td><button (click)="editData()">Update</button> </td>
+        </tr>
+    </table>
+
+</span>

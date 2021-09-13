@@ -1,0 +1,29 @@
+<p>newproduct works!</p>
+<form #productDetForm="ngForm" (ngSubmit)=saveProduct(productDetForm) novalidate>
+    <table>
+        <tr>
+            <td><label for="prodid">Product Id</label></td>
+            <td><input type="text" name="prodid" ngModel required></td>
+        </tr>
+        <tr>
+            <td><label for="prodname">Product Name</label></td>
+            <td><input type="text" name="prodname" ngModel required> </td>
+        </tr>
+        <tr>
+            <td><label for="price">Product Price</label></td>
+            <td><input type="text" name="price" ngModel required ></td>
+        </tr>
+        <tr>
+            <td><label for="category">Product Category</label></td>
+            <td><select name="category" ngModel required>
+                <option *ngFor="let f of categories">
+                    {{f}}
+                </option>
+            </select></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit" [disabled]="!productDetForm.valid"> Save Products</button></td>
+        </tr>
+    </table>
+</form>
