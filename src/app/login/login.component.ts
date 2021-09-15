@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-login',
@@ -9,30 +10,28 @@ import { LoginService } from '../login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private myrouter:Router) { }
+  constructor(private ps:ProductService,private myrouter:Router) { }
 
   
   ngOnInit(): void {
     
   }
+
   logid:any;
   logpass:any;
-  check:any;
-  err="INVALID LOGIN";
-  onsubmit()
-  {
-    console.log(this.logid);
-    console.log(this.logpass);
-    if(this.logid=="SA" && this.logpass=="Sa@123")
-  {
-    this.check=true;
-    console.log(this.check);
-    if(this.check)
-    {
-      this.myrouter.navigate(['/home']);
-    }
+  err="";
 
+  validate()
+  {
+      if(this.ps.validateLogin(this.logid,this.logpass))
+      {
+        localStorage.setItem("logid",this.logid);
+        this.myrouter.navigate(['home']);
+      }
+      else
+      {
+        this.err="Invalid User!";
+      }
   }
-  
-  }
+
 }

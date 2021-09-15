@@ -10,17 +10,16 @@ export class HomeComponent implements OnInit {
 
   constructor(private myrouter:Router) { }
 
+  user:any;
   ngOnInit(): void {
+    this.user=localStorage.getItem("logid");
   }
 
   view()
   {
     this.myrouter.navigate(['/home/viewproduct']);
   }
-  edit()
-  {
-    this.myrouter.navigate(['/home/editproduct']);
-  }
+
   new()
   {
     this.myrouter.navigate(['/home/newproduct']);

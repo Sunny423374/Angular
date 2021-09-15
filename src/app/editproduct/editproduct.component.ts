@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../product';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -9,23 +11,30 @@ import { ProductService } from '../product.service';
 })
 export class EditproductComponent implements OnInit {
 
-  constructor(private pservice:ProductService) { }
+  constructor(private pservice: ProductService, private activeRoute: ActivatedRoute, private myrouter: Router) { }
+
+  prodid: any;
+  prod: Product = new Product();
 
   ngOnInit(): void {
+    this.activeRoute.paramMap.subscribe(
+      params => {
+        this.prodid = params.get("pid");
+      }
+    )
+
+    console.log("get the data");
+    this.prod = this.pservice.getProdsById(this.prodid);
+    console.log(this.prod);
+  }
+  
+  cats=["Grocery","Electronics","Fashion","Utilities","BeatyandHealth"];
+
+  saveProduct(prodForm: any) {
+    this.prod = prodForm.value;
+    console.log(this.prod);
+    this.pservice.editProduct(this.prod);
+    this.myrouter.navigate(['home']);
   }
 
-  prodForm = new FormGroup(
-    {
-      prodid:new FormControl('',Validators.required),
-      prodname:new FormControl('',Validators.required),
-      price:new FormControl('',Validators.required),
-      
-    }
-  )
-  
-  editData()
-  {
-    console.log(this.prodForm.value);
-    this.pservice.editProduct();
-  }
 }

@@ -1,5 +1,5 @@
 export class Product {
-    prodid:number |undefined;
+    prodid:string |undefined;
     prodname:string |undefined;
     price:string |undefined;
     category:string |undefined;

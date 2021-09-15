@@ -17,7 +17,7 @@
 </form>>
 -->
 
-<form (click)="onsubmit()">
+<form (click)="validate()">
     <table>
         <tr>
 
@@ -34,4 +34,4 @@
     </table>
 </form>
 
-<div *ngIf="!check">{{err}}</div>
+<span style="color: red;">{{err}}</span>

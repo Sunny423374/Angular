@@ -1,4 +1,8 @@
 <p>search works!</p>
+<button (click)="goHome()" class="btn btn-primary">
+    Home
+   </button> <br><br><hr>
+
 <h1>Search the Category</h1>
 
 <select name="category" [(ngModel)]="cat">
@@ -8,7 +12,7 @@
 </select>
 <button (click)="search()">Search</button>
 <br><br>
-<span> Product List
+<span> Product List <br>
     <table>
         <tr>
             <td>Product Id</td>
@@ -26,7 +30,7 @@
             <td>{{p.category}}</td>
             <td>{{i}}</td>
             <td><button (click)="deleteData(i)">Delete</button></td>
-            <td><button (click)="editData()">Update</button> </td>
+            <td><button (click)="editData(p.prodid)">Update</button> </td>
         </tr>
     </table>
 

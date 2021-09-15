@@ -1,4 +1,8 @@
 <p>viewproduct works!</p>
+<button (click)="goHome()" class="btn btn-primary">
+    Home
+   </button> <br><br><hr>
+
 <span> Product List
     <table id="a">
         <tr>
@@ -17,7 +21,7 @@
             <td>{{p.category}}</td>
             <td>{{i}}</td>
             <td><button (click)="deleteData(i)">Delete</button></td>
-            <td><button (click)="editData()">Update</button> </td>
+            <td><button (click)="editData(p.prodid)">Update</button> </td>
         </tr>
     </table>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProductService } from '../product.service';
 export class SearchComponent implements OnInit {
 
   
-  constructor(private pservice:ProductService) { }
+  constructor(private pservice:ProductService,private myrouter:Router) { }
 
   prodData:any;
   cat:any;
@@ -22,6 +23,7 @@ export class SearchComponent implements OnInit {
   deleteData(i:any)
   {
     this.pservice.deleteProduct(i);
+ 
   }
 
   search()
@@ -30,9 +32,15 @@ export class SearchComponent implements OnInit {
     console.log(this.cat)
   }
 
-  editData()
+  goHome()
+ {
+   this.myrouter.navigate(['home']);
+ } 
+
+  editData(p:String)
   {
-    this.prodData=this.pservice.editProduct();
+    console.log(p);
+    this.myrouter.navigate(['home/editproduct/',p]);
   }
   
 }

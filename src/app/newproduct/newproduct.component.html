@@ -1,21 +1,24 @@
 <p>newproduct works!</p>
+<button (click)="goHome()" class="btn btn-primary">
+    Home
+   </button> <br><br><hr>
 <form #productDetForm="ngForm" (ngSubmit)=saveProduct(productDetForm) novalidate>
     <table>
         <tr>
             <td><label for="prodid">Product Id</label></td>
-            <td><input type="text" name="prodid" ngModel required></td>
+            <td><input type="text" name="prodid" [(ngModel)]="prod.prodid" required></td>
         </tr>
         <tr>
             <td><label for="prodname">Product Name</label></td>
-            <td><input type="text" name="prodname" ngModel required> </td>
+            <td><input type="text" name="prodname" [(ngModel)]="prod.prodname" required> </td>
         </tr>
         <tr>
             <td><label for="price">Product Price</label></td>
-            <td><input type="text" name="price" ngModel required ></td>
+            <td><input type="text" name="price" [(ngModel)]="prod.price" required ></td>
         </tr>
         <tr>
             <td><label for="category">Product Category</label></td>
-            <td><select name="category" ngModel required>
+            <td><select name="category" [(ngModel)]="prod.category" required>
                 <option *ngFor="let f of categories">
                     {{f}}
                 </option>

@@ -11,6 +11,24 @@ export class ProductService {
 
   prodArray:Array<Product>=[];
 
+  getAllProds()
+  {
+    return this.prodArray;
+  }
+  getProdsById(pid:string)
+  {
+    let p=new Product();
+      for(let p1 of this.prodArray)
+      {
+        if(p1.prodid==pid)
+        {
+            p=p1;
+            break;
+        }
+      }
+      return p;
+  }
+
   addProduct(product:Product)
   {
     this.prodArray.push(product)
@@ -26,40 +44,41 @@ export class ProductService {
     this.prodArray.splice(i,1);
   }
 
-  searchArray:Array<Product>=[];
+  
   searchProduct(cat:any)
   {
+    let searchArray=new Array<Product>();
     console.log(cat);
     for(let a of this.prodArray)
     {
       if(a.category==cat)
       {
-        this.searchArray.push(a);
+        searchArray.push(a);
       }
     }
-    return this.searchArray;
+    return searchArray;
     
   }
   
-  editProduct()
+  editProduct(product:Product)
   {
-    const prodForm = new FormGroup(
+    let i=0;
+      for(i;i<this.prodArray.length;i++)
       {
-        prodid:new FormControl('',Validators.required),
-        prodname:new FormControl('',Validators.required),
-        price:new FormControl('',Validators.required),
-        
+        if(this.prodArray[i].prodid==product.prodid)
+        {
+            this.prodArray[i]=product;
+            console.log("Updated");
+        }
       }
-    )
-    for(let i=0;i<this.prodArray.length;i++)
-    {
-      prodForm.patchValue({
-        prodid:this.prodArray[i].prodid,
-        prodname:this.prodArray[i].prodname,
-        price:this.prodArray[i].price
-      });
-    }
-    console.log(prodForm.value);
+  }
+
+  validateLogin(uid:string,pass:string)
+  {
+    if(uid=="sa" && pass=="sa123")
+      return true;
+      else
+      return false;
   }
 
 }
